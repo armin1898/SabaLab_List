@@ -1,0 +1,50 @@
+﻿@model SabaLab_List.ViewModels.RegisterViewModels
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h3>ثبت نام کاربر</h3>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+
+        <form asp-controller="Account" asp-action="Register" method="post">
+            <div asp-validation-summary="ModelOnly"></div>
+
+            <div class="col-md-11">
+                <input asp-for="UserName" class="form-control"  placeholder="نام کاربری"/>
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-11">
+                <input asp-for="Email" class="form-control" placeholder="ایمیل" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-11">
+                <input asp-for="Password" class="form-control" placeholder="رمزعبور" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-11">
+                <input asp-for="ConfirmPassword" class="form-control" placeholder="تایید رمزعبور" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-11">
+                <div class="form-group4">
+                    <button type="submit" class="btn btn-primary">ثبت نام</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<hr/>
+
+
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

@@ -1,0 +1,222 @@
+﻿@model ModelLibrary.DataModels
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="card">
+    <div class="card-header text-center">
+        <h3 style="color:darkblue;">به روزرسانی</h3>
+    </div>
+    <div class="card-body">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row" style="margin-top:10px">
+                <div class="col-md-3">
+                    <input asp-for="fullName" class="form-control" placeholder="نام آزمایشگاه" />
+                    <span asp-validation-for="fullName" class="danger"></span>
+                </div>
+                <div class="col-md-3">
+                    <input asp-for="DrName" class="form-control" placeholder="نام پزشک" />
+                    <span asp-validation-for="DrName" style="text-align: right; margin-right: 25%; color: red; font: bold 15px 'B Nazanin'; "></span>
+                </div>
+                <div class="col-md-3">
+                    <input asp-for="DrMobile" class="form-control" placeholder="موبایل پزشک" />
+                    <span asp-validation-for="DrMobile" class="text-danger"></span>
+                </div>
+                <div class="col-md-3">
+                    <input asp-for="MasoolAz" class="form-control" placeholder="مسئول رابط" />
+                    <span asp-validation-for="MasoolAz" class="text-danger"></span>
+                </div>
+                <div class="col-md-3">
+                    <input asp-for="MasoolTel" class="form-control" placeholder="موبایل رابط آزمایشگاه" />
+                    <span asp-validation-for="MasoolTel" class="text-danger"></span>
+                </div>
+                <div class="col-3">
+                    <input asp-for="Address" class="form-control" placeholder="آدرس" />
+                    <span asp-validation-for="Address" class="danger"></span>
+                </div>
+                <div class="col-3">
+                    <input asp-for="Phone" class="form-control" placeholder="تلفن ثابت" />
+                    <span asp-validation-for="Phone" class="danger"></span>
+                </div>
+                <div class="col-3">
+                    <input asp-for="EndOfSupport" class="form-control" placeholder="پایان پشتیبانی" />
+                    <span asp-validation-for="EndOfSupport" class="danger"></span>
+                </div>
+                <div class="col-md-3 mt-4">
+                    <input asp-for="Description" class="form-control" placeholder="توضیحات" />
+                    <span asp-validation-for="Description" class="danger"></span>
+                </div>
+                <div class="col-3 mt-4">
+                    <input asp-for="LastMoney" class="form-control" placeholder="آخرین پرداختی" />
+                    <span asp-validation-for="LastMoney" class="danger"></span>
+                </div>
+                <div class="col-3 mt-4">
+                    <select asp-for="IsActive" class="selecte-box">
+                        <option value="true">فعال</option>
+                        <option value="False">غیرفعال</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <input type="submit" value="ذخیره" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-action="Index">بازگشت به لیست</a>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+@*<div class="container">
+        <div class="row">
+            <div>
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+                    <div style="margin-top:17px; margin-left:830px;">
+                        <label asp-for="fullName" class=" control-label" style="margin-left:80px;">:نام آزمایشگاه</label>
+                        <input asp-for="fullName" class="form-control" placeholder="...." />
+                        <span asp-validation-for="fullName" class="text-danger"></span>
+                    </div>
+
+                    <div style="margin-top:-67px; margin-left:430px;">
+                        <label asp-for="DrName" class=" control-label" style="margin-left:-100px;">:نام پزشک</label>
+                        <input asp-for="DrName" class="form-control" placeholder="نام پزشک...." />
+                        <span asp-validation-for="DrName" class="text-danger"></span>
+                    </div>
+
+                    <div style="margin-top:-67px; margin-left:25px;">
+                        <label asp-for="DrMobile" class=" control-label" style="margin-left: -320px;">:موبایل پزشک</label>
+                        <input asp-for="DrMobile" class="form-control" placeholder="موبایل پزشک...." />
+                        <span asp-validation-for="DrMobile" class="text-danger"></span>
+                    </div>
+
+                    <div style="margin-top:17px; margin-left:830px;">
+                        <label asp-for="MasoolAz" class=" control-label" style="margin-left:90px;">:مسئول رابط</label>
+                        <input asp-for="MasoolAz" class="form-control" placeholder="مسئول رابط...." />
+                        <span asp-validation-for="MasoolAz" class="text-danger"></span>
+                    </div>
+
+                    <div style="margin-top:-67px; margin-left:430px;">
+                        <label asp-for="MasoolTel" class=" control-label" style="margin-left:-105px;">:موبایل رابط</label>
+                        <input asp-for="MasoolTel" class="form-control" placeholder="موبایل رابط...." />
+                        <span asp-validation-for="MasoolTel" class="text-danger"></span>
+                    </div>
+
+                    <div style="margin-top:-67px; margin-left:25px;">
+                        <label asp-for="Address" class=" control-label" style="margin-left: -285px;">: آدرس</label>
+                        <input asp-for="Address" class="form-control" placeholder="آدرس...." />
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+
+                    <div style="margin-top:17px; margin-left:830px;">
+                        <label asp-for="Phone" class=" control-label" style="margin-left:95px;">: تلفن ثابت</label>
+                        <input asp-for="Phone" class="form-control" placeholder="تلفن ثابت...." />
+                        <span asp-validation-for="Phone" class="text-danger"></span>
+                    </div>
+
+                    <div style="margin-top:-67px; margin-left:430px;">
+                        <label asp-for="EndOfSupport" class=" control-label" style="margin-left:-130px;">: پایان پشتیبانی</label>
+                        <input asp-for="EndOfSupport" class="form-control" placeholder="پایان پشتیبانی...." />
+                        <span asp-validation-for="EndOfSupport" class="text-danger"></span>
+                    </div>
+
+                    <div style="margin-top:-67px; margin-left:25px;">
+                        <label asp-for="Description" class=" control-label" style="margin-left:-300px;">: توضیحات</label>
+                        <input asp-for="Description" class="form-control" placeholder="توضیحات...." />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+
+                    <div style="margin-top:10px; margin-left:830px;direction:rtl;">
+                        <label asp-for="IsActive" class=" control-label">وضعیت پشتیبانی :</label>
+                        <select asp-for="IsActive" class="selecte-box">
+                            <option value="true">فعال</option>
+                            <option value="False">غیرفعال</option>
+                        </select>
+                    </div>
+                    <div style="margin-top: -35px; margin-left: 430px;">
+                        <label asp-for="LastMoney" class=" control-label" style="margin-left:-130px;">: آخرین پرداختی</label>
+                        <input asp-for="LastMoney" class="form-control" placeholder="....آخرین پرداختی" />
+                        <span asp-validation-for="LastMoney" class="danger"></span>
+                    </div>
+
+                    <div class="container" style="background-color:rgb(243 241 241 / 0.70); width:400px; height:100px;margin-left:50px;margin-top:-40px;border-radius:10px;">
+                        <p style="margin-bottom:-20px;">:ماژول ها</p>
+                        <div style="margin-top:10px; margin-left:322px; position:center;">
+                            <label asp-for="Media" class="form-check-inline" style="font: bold 14px 'B Nazanin'; color: darkblue; margin-top: 15px;">
+                                <input asp-for="Media" type="checkbox" class="form-check-input" /> مدیا
+                            </label>
+                        </div>
+
+                        <div style="margin-top:-30px; margin-left:-50px; position:center;">
+                            <label asp-for="ResponseOnline" class="form-check-inline" style="font: bold 14px 'B Nazanin'; color: darkblue">
+                                <input asp-for="ResponseOnline" type="checkbox" class="form-check-input" />جوابدهی آنلاین
+                            </label>
+                        </div>
+
+                        <div style="margin-top:-30px; margin-left:-70px; position:center;">
+                            <label asp-for="LabManagerOnline" class="form-check-inline" style="font: bold 14px 'B Nazanin'; color: darkblue; margin-top: 35px;">
+                                <input asp-for="LabManagerOnline" type="checkbox" class="form-check-input" />مدیر آنلاین
+                            </label>
+                        </div>
+
+                        <div style="margin-top:-65px; margin-left:315px; position:center;">
+                            <label asp-for="MediaQR" class="form-check-inline" style="font: bold 14px 'B Nazanin'; color: darkblue; margin-top: 35px;">
+                                <input asp-for="MediaQR" type="checkbox" class="form-check-input" />QRمدیا
+                            </label>
+                        </div>
+
+                        <div style="margin-top:-70px; margin-left:-280px; position:center;">
+                            <label asp-for="BackupSync" class="form-check-inline" style="font: bold 14px 'B Nazanin'; color: darkblue">
+                                <input asp-for="BackupSync" type="checkbox" class="form-check-input" />بکاپ سینک
+                            </label>
+                        </div>
+
+                        <div style="margin-top:7px; margin-left:-280px; position:center;">
+                            <label asp-for="Qc" class="form-check-inline" style="font: bold 14px 'B Nazanin'; color: darkblue">
+                                <input asp-for="Qc" type="checkbox" class="form-check-input" />کنترل کیفی
+                            </label>
+                        </div>
+
+                        <div style="margin-top:-30px; margin-left:155px; position:center;">
+                            <label asp-for="Storage" class="form-check-inline" style="font: bold 14px 'B Nazanin'; color: darkblue">
+                                <input asp-for="Storage" type="checkbox" class="form-check-input" />انبارداری
+                            </label>
+                        </div>
+
+                        <div style="margin-top:-70px; margin-left:160px; position:center;">
+                            <label asp-for="Sms" class="form-check-inline" style="font: bold 14px 'B Nazanin'; color: darkblue">
+                                <input asp-for="Sms" type="checkbox" class="form-check-input" />اس ام اس
+                            </label>
+                        </div>
+                    </div>
+
+
+                    
+                    <div style="margin-top:2px; margin-left:-5px;">
+                        <a asp-action="Index">بازگشت به لیست</a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>*@
+
+<hr />
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

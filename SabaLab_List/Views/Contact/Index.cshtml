@@ -1,0 +1,234 @@
+﻿@model IEnumerable<ModelLibrary.DataModels>
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div>
+    <div>
+        @*<form asp-controller="Account" asp-action="LogOut" method="post">
+                <button type="submit" class="btn-sm">خروج</button>
+            </form>*@
+
+        <h4 class="text-center text-white" style="margin-bottom:30px;background-color:darkgray;height:40px;border-radius:5px;">لیست آزمایشگاه ها</h4>
+
+        <div class="row">
+            <div class="col-1" style="margin-left:50px">
+                <form asp-controller="Contact" asp-action="Create" method="get">
+                    <button class="btn-outline-primary btn-sm" style="direction:rtl">افزودن</button>
+
+                </form>
+                @*<form asp-controller="Account" asp-action="Register" method="get">
+                        <button class="btn-primary2">کاربرجدید</button>
+                    </form>*@
+                @*<form asp-controller="" asp-action="" method="get">
+                        <button class="btn-primary3">ماژول ها</button>
+                    </form>
+                    <form asp-controller="" asp-action="" method="get">
+                        <button class="btn-primary4">آنتی ویروس</button>
+                    </form>*@
+                @*<a asp-action="Create" asp-controller="Contact">افزودن</a>*@
+                <!-- Button trigger modal -->
+                @*<button type="button" class="btn btn-primary col-sm-2" data-toggle="modal" data-target="#exampleModalCenter">
+                        افزودن
+                    </button>
+                *@
+            </div>
+            <div class="col-10" style="display:inline-block">
+                <input id="myInput" type="text" placeholder="جستجو آزمایشگاه.." class="form-control" />
+            </div>
+        </div>
+
+        <div id="collapse1" class="panel-collapse collapse">
+            <table class="table table-bordered table-hover table-striped table-sm " id="myTable" style="margin-top:10px">
+                <caption class="alert-dark">List of users</caption>
+                <thead class="thead-dark">
+                    <tr style="font-size:small;text-align-last:center">
+                        <th onclick="sortTable(0)">
+                            آزمایشگاه
+                        </th>
+                        <th onclick="sortTable(1)">
+                            نام پزشک
+                        </th>
+                        <th>
+                            موبایل
+                        </th>
+                        <th>
+                            رابط
+                        </th>
+                        <th>
+                            موبایل
+                        </th>
+                        <th>
+                            آدرس
+                        </th>
+                        <th>
+                            تلفن ثابت
+                        </th>
+                        <th>
+                            پشتیبانی
+                        </th>
+                        <th>
+                            آخرین پرداختی
+                        </th>
+                        <th>
+                            پایان پشتیبانی
+                        </th>
+                        <th>
+                            توضیحات
+                        </th>
+
+
+                        <th></th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr style="font-size:small;text-align-last:center">
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.fullName)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DrName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DrMobile)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MasoolAz)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MasoolTel)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Address)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Phone)
+                            </td>
+                            <td>
+
+                                @Html.DisplayFor(modelItem => item.IsActive)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LastMoney)
+                            </td>
+                            <td>
+
+                                @Html.DisplayFor(modelItem => item.EndOfSupport)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.Media) مدیا
+                        @Html.DisplayFor(modelItem => item.ResponseOnline)جوابدهی آنلاین
+                        @Html.DisplayFor(modelItem => item.Sms) پیامک
+                        @Html.DisplayFor(modelItem => item.LabManagerOnline) مسئول فنی آنلاین<br />
+                        @Html.DisplayFor(modelItem => item.Storage) انبارداری
+                        @Html.DisplayFor(modelItem => item.MediaQR) مدیابارکد
+                        @Html.DisplayFor(modelItem => item.LabManagerOnline) کنترل کیفی
+                        @Html.DisplayFor(modelItem => item.BackupSync) بکاپ سینک
+                                </td>*@
+
+                            <td class="bg-light">
+                                <a class="btn-primary btn-sm" asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-edit"></i></a>
+                                <a class="btn-danger btn-sm text-white" onclick="confirmDelete(@item.Id)"><i class="fa fa-trash"></i></a>
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+@section Scripts{
+    <script>
+        function confirmDelete(itemId) {
+            swal({
+                title: "آیا برای حذف مطئنید؟",
+                text: "پس از حذف امکان بازیابی اطلاعات نمی باشد!",
+                icon: "warning",
+                buttons: true,
+                confirmButtonText:"kkkk",
+                dangerMode: true
+            }).then((willDelete) => {
+                if (willDelete) {
+                    deleteItem(itemId);
+                }
+            });
+        }
+
+        function deleteItem(itemId) {
+            fetch(`/Contact/Delete/${itemId}`, {
+                method: "DELETE"
+            }).then(response => {
+                if (response.ok) {
+                    swal("حذف شد!", "سطر مورد نظر با موفقیت حذف شد", "success").then(() => {
+                       
+                        location.reload();
+                    });
+                } else {
+                    swal("Error", "An error occurred while deleting the item", "error");
+                }
+            }).catch(error => {
+                swal("Error", "An error occurred while deleting the item", "error");
+            });
+        }
+
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myTable1 tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+
+
+        function sortTable(n) {
+            var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+            table = document.getElementById("myTable");
+            switching = true;
+            dir = "asc";
+            while (switching) {
+                switching = false;
+                rows = table.rows;
+                for (i = 1; i < (rows.length - 1); i++) {
+                    shouldSwitch = false;
+                    x = rows[i].getElementsByTagName("TD")[n];
+                    y = rows[i + 1].getElementsByTagName("TD")[n];
+                    if (dir == "asc") {
+                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    } else if (dir == "desc") {
+                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                }
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                    switchcount++;
+                } else {
+                    if (switchcount == 0 && dir == "asc") {
+                        dir = "desc";
+                        switching = true;
+                    }
+                }
+            }
+        }
+  </script>
+}
